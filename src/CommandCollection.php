@@ -37,14 +37,17 @@ class CommandCollection extends ResourceCollection {
   public $parent = null;
 
 /**
- * Resource collection constructor
+ * Command collection constructor
  *
- * @param M2X $client
+ * @param MQTTClient $client
+ * @param array $params
+ * @param Resource $resource
  */
-  public function __construct(MQTTClient $client, Resource $parent, $params = array()) {
-    $this->parent = $parent;
-
-    parent::__construct($client, $params);
+    public function __construct(MQTTClient $client, $params = array(), Resource $parent = null) {
+      if (isset($parent)) {
+        $this->parent = $parent;
+      }
+      parent::__construct($client, $params);
   }
 
 /**
@@ -54,7 +57,11 @@ class CommandCollection extends ResourceCollection {
  */
   protected function path() {
     $class = static::$resourceClass;
-    return str_replace(':parent_path', $this->parent->path(), $class::$path);
+    if (isset($this->parent)) {
+      return str_replace(':parent_path', $this->parent->path(), $class::$path);
+    } else {
+      return str_replace(':parent_path', '' , $class::$path);
+    }
   }
 
 /**
@@ -64,6 +71,10 @@ class CommandCollection extends ResourceCollection {
  * @param array $data
  */
   protected function setResource($i, $data) {
-    $this->resources[$i] = new static::$resourceClass($this->client, $this->parent, $data);
+    if (isset($this->parent)) {
+      $this->resources[$i] = new static::$resourceClass($this->client, $data, $this->parent);
+    } else {
+      parent::setResource($i,  $data);
+    }
   }
 }

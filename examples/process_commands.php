@@ -1,6 +1,6 @@
 <?php
 
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 
 use Att\M2X\MQTT\MQTTClient;
 
@@ -50,6 +50,9 @@ class Constants {
 
 function process_command($command) {
   print sprintf("Processing command %s (name=%s)\n\r", $command->id, $command->name);
+  $response = $command->viewDeviceCommandDetails();
+  echo "Command Details :\r\n";
+  echo $response->raw();
 
   $name = strtoupper($command->name);
 

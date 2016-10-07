@@ -416,4 +416,28 @@ class MQTTClient {
   public function distribution($id) {
     return new Distribution($this, array('id' => $id));
   }
+
+/**
+ * Retrieve a list of commands associated with the user account.
+ *
+ * @link https://m2x.att.com/developer/documentation/v2/commands#List-Sent-Commands
+ *
+ * @param array $params
+ * @return CommandCollection
+ */
+  public function commands($params = array()) {
+    return new CommandCollection($this, $params);
+  }
+
+/**
+ * Send a command to target devices.
+ *
+ * @link https://m2x.att.com/developer/documentation/v2/commands#Send-Command
+ *
+ * @param array $params
+ * @return MQTTResponse
+ */
+  public function sendCommand($params = array()) {
+    return $this->post('/commands', $params);
+  }
 }
