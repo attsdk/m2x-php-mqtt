@@ -9,10 +9,10 @@ $apiKey = getenv("API_KEY");
 $hostname = 'api-m2x.att.com';
 
 function get_command_details($command) {
-  print sprintf("\n\rCommandId = %s , CommandName = %s and ", $command->id, $command->name);
+  print sprintf("CommandId = %s , CommandName = %s and ", $command->id, $command->name);
   $response = $command->details();
-  echo "Command Details :\r\n";
-  echo $response->raw();
+  echo "Command Details :";
+  echo $response->raw()."\n";
 }
 
 try {
@@ -22,7 +22,7 @@ try {
   ));
 
   $client->connect();
-  echo "Connected to the broker\n\r";
+  echo "Connected to the broker\n";
 
   $commands = $client->commands(array('limit' => 4));
 

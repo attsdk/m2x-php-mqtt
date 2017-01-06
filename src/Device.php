@@ -121,16 +121,15 @@ class Device extends Resource {
   }
 
 /**
-   * Wait for a new command, this method will block until a packet is received.
-   *
-   * @link https://m2x.att.com/developer/documentation/v2/mqtt#Commands-API
-   *
-   * @return Command
-   */
+ * Wait for a new command, this method will block until a packet is received.
+ *
+ * @link https://m2x.att.com/developer/documentation/v2/mqtt#Commands-API
+ *
+ * @return Command
+ */
   public function receiveCommand() {
     $packet = $this->client->receivePacket($this->commandsTopic);
     $data = json_decode($packet->payload(), true);
     return new Command($this->client, $this, $data);
   }
-
 }

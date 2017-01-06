@@ -16,7 +16,7 @@ try {
   ));
 
   $m2x->connect();
-  echo "Connected to the broker\n\r";
+  echo "Connected to the broker\n";
 
   $device = $m2x->device($deviceId);
 
@@ -30,11 +30,11 @@ try {
 
   $response = $device->postSingleValueToMultipleStreams($params);
 
-  echo "Status code $response->statusCode";
+  echo "Status code $response->statusCode\n";
   if ($response->statusCode == 202) {
-    echo  "\n\rUpdate Single Value to multiplestreams is Successful.";
+    echo  "Update Single Value to multiple streams is Successful.\n";
   } else {
-    echo  "\n\rUpdate Single Value to multiplestreams is Failed. Please Try Again.";
+    echo  "Update Single Value to multiple streams is Failed. Please Try Again.\n";
   }
   $m2x->disconnect();
 } catch (Exception $ex) {

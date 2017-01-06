@@ -16,7 +16,7 @@ try {
   ));
 
   $m2x->connect();
-  echo "Connected to the broker\n\r";
+  echo "Connected to the broker\n";
 
   //Check for unacknowledged commands
   $response = $m2x->sendCommand(array(
@@ -25,12 +25,12 @@ try {
          "devices" => [$deviceId]
      )
  ));
-  echo  "Status code $response->statusCode";
+  echo  "Status code $response->statusCode\n";
 
   if ($response->statusCode == 202) {
-    echo  "\n\rSend Command is Successful.";
+    echo  "Send Command is Successful.\n";
   } else {
-    echo  "\n\rSend Command Failed. Please Try Again.";
+    echo  "Send Command Failed. Please Try Again.\n";
   }
   $m2x->disconnect();
 } catch (Exception $ex) {

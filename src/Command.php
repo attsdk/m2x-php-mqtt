@@ -14,12 +14,12 @@ class Command extends Resource {
  */
   public static $path = ':parent_path/commands';
 
-  /**
-   * The parent resource that this stream belongs to
-   *
-   * @var Resource
-   */
-    public $parent = null;
+/**
+ * The parent resource that this stream belongs to
+ *
+ * @var Resource
+ */
+  public $parent = null;
 
 /**
  * The Device resource properties
@@ -39,8 +39,8 @@ class Command extends Resource {
  */
   public function __construct(MQTTClient $client, $data = array(), Resource $parent = null) {
     if (isset($parent)) {
-    $this->parent = $parent;
-}
+      $this->parent = $parent;
+    }
     parent::__construct($client, $data);
   }
 

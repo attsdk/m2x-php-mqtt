@@ -293,16 +293,16 @@ class MQTTClient {
     return 'PHP-' . time() . '-' . substr(md5(rand()), 0, 7);
   }
 
-  /**
-   * Perform a GET request to the API.
-   *
-   * @param string $path
-   * @param array $params
-   * @return MQTTResponse
-   */
-    public function get($path, $params = array()) {
-      return $this->sendRequest('GET', $path, $params);
-    }
+/**
+ * Perform a GET request to the API.
+ *
+ * @param string $path
+ * @param array $params
+ * @return MQTTResponse
+ */
+  public function get($path, $params = array()) {
+    return $this->sendRequest('GET', $path, $params);
+  }
 
 /**
  * Perform a POST request to the API.

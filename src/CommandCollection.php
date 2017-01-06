@@ -43,11 +43,11 @@ class CommandCollection extends ResourceCollection {
  * @param array $params
  * @param Resource $resource
  */
-    public function __construct(MQTTClient $client, $params = array(), Resource $parent = null) {
-      if (isset($parent)) {
-        $this->parent = $parent;
-      }
-      parent::__construct($client, $params);
+  public function __construct(MQTTClient $client, $params = array(), Resource $parent = null) {
+    if (isset($parent)) {
+      $this->parent = $parent;
+    }
+    parent::__construct($client, $params);
   }
 
 /**
